@@ -14,7 +14,7 @@ const LeftSideNav = () => {
                 />
                 <Carousel.Caption>
                     <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <p>Nulla vitae elit libero, a .</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
