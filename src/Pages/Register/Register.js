@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useContext } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
@@ -7,6 +7,7 @@ import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+    const[error, setError] = useState('')
      const {createUser} = useContext(AuthContext);
 
     const handleSubmit = (event) =>{
@@ -22,8 +23,12 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError('');
         })
-        .catch(e=>console.error(e))
+        .catch(e=>{
+            console.error(e)
+            setError(e.message)
+        })
     }
 
 
@@ -74,6 +79,7 @@ const Register = () => {
                     <Form.Control name='password' type="password" id="registerName" required placeholder='Your Password' />
                     <Form.Label class="form-label" for="registerName"> Your Password</Form.Label>
                 </Form.Group>
+                <p className='text-danger'>{error}</p>
 
                 <div class="row mb-4">
                     <div class="col-md-6 d-flex justify-content-center">

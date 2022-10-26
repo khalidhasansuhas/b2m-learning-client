@@ -1,6 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
 import { useContext } from 'react';
-import { Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
@@ -8,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-
+    const[error, setError] = useState('')
     const {signIn} = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -23,9 +24,14 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            setError('');
             navigate('/home')
         })
-        .catch(e=>console.error(e))
+        .catch(e=>
+            {
+                console.error(e)
+                setError(e.message)
+            })
     }
 
     return (
@@ -67,6 +73,7 @@ const Login = () => {
                     <Form.Control name='password' type="password" id="registerName" required placeholder='Your Password' />
                     <Form.Label class="form-label" for="registerName"> Your Password</Form.Label>
                 </Form.Group>
+            <p className='text-danger'>{error}</p>
 
 
             <div class="row mb-4">

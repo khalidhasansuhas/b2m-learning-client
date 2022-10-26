@@ -43,10 +43,19 @@ const CourseDetails = () => {
                                 <ListGroup.Item>Employment: {employed}</ListGroup.Item>
                             </Card.Body>
                         </ListGroup>
+                        <ListGroup className="list-group-flush">
+                            <Card.Body>
+
+                                <Card.Title>Access:</Card.Title>
+                                <ListGroup.Item>Previous Fee: {fee}</ListGroup.Item>
+                                <ListGroup.Item>Discount offer: 20%</ListGroup.Item>
+                                <ListGroup.Item>Current fee: 8000</ListGroup.Item>
+                            </Card.Body>
+                        </ListGroup>
                     </Card.Body>
                     <div className=" mt-5 mb-5 text-center">
 
-                        <Link to='/getpremium'><button type="button" className="btn btn-primary text-center">Get Premium Access</button></Link>
+                        <Link to='/checkout'><button type="button" className="btn btn-primary text-center">Get Premium Access</button></Link>
                     </div>
                 </Card>
             </Col>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar,  XAxis, YAxis, Tooltip } from 'recharts';
 import { CourseContext } from '../../layout/Main';
 
 
