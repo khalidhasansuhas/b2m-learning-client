@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const RightSideNav = () => {
 
@@ -16,6 +19,19 @@ const RightSideNav = () => {
             .then(data => setCourses(data))
     }, [])
 
+
+    const {providerLogin} = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider()
+
+    const handleGoogleSignIn = () =>{
+        providerLogin(googleProvider)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error=> console.error(error))
+    }
     return (
         <div>
             <h2>All courses : {courses.length}</h2>
@@ -27,7 +43,7 @@ const RightSideNav = () => {
                 }
             </div>
             <ButtonGroup vertical className='w-100'>
-                <Button className='mb-2' variant="outline-primary"><FaGoogle></FaGoogle> Google SignIn</Button>
+                <Button onClick={handleGoogleSignIn} className='mb-2' variant="outline-primary"><FaGoogle></FaGoogle> Google SignIn</Button>
                 <Button className='mb-2' variant="outline-dark"><FaGithub></FaGithub> GitHub SignIn</Button>
             </ButtonGroup>
         </div>

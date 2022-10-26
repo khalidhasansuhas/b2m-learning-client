@@ -8,6 +8,7 @@ import B2m from '../../../assets/B2m.png';
 import { Image } from 'react-bootstrap';
 import { useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     const [toggle, setToggle] = useState(true)
@@ -36,7 +37,12 @@ const Header = () => {
                         {toggle ? 'Dark Mode' : "Light Mode"}
                         </button>
                         <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
-
+                        <Link  to='/profile'>
+                            {user?.photoURL ?
+                                <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL} ></Image>
+                                : <FaUser></FaUser>
+                            }
+                        </Link>
                     </Nav>
                     <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>
