@@ -17,7 +17,7 @@ const Error = () => {
                     </span>
 
                     <div className="card-body mx-auto">
-                        <Link type="button" to='/'
+                        <Link type="button" to='/home'
                             className="btn btn-sm btn-info text-white"> Back To Home </Link>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import RightSideNav from '../RightSideNav/RightSideNav';
 
 const Home = () => {
     const loadCourse = useContext(CourseContext)
-    console.log(loadCourse)
+    
     return (
 
 

@@ -6,7 +6,7 @@ import { CourseContext } from '../../layout/Main';
 
 const BarCharts = () => {
     const loadCourse = useContext(CourseContext)
-    console.log(loadCourse)
+    
     return (
        
         

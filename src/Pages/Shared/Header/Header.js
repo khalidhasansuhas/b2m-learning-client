@@ -5,39 +5,58 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import B2m from '../../../assets/B2m.png';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     const [toggle, setToggle] = useState(true)
-    const {user} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(e => console.error(e))
+    }
 
     return (
-        <Navbar collapseOnSelect className='mb-5' expand="lg" bg={toggle? "dark" : "light"} variant={toggle? "dark" : "light"}>
+        <Navbar collapseOnSelect className='mb-5' expand="lg" bg={toggle ? "dark" : "light"} variant={toggle ? "dark" : "light"}>
 
             <Container>
                 <Link to='/'><Image style={{ height: '50px' }} src={B2m}></Image></Link>
-                <Link type="button" className={toggle? "btn btn-dark text-warning" : "btn btn-light text-warning" } to='/'>Beginner to Master Learning</Link>
+                <Link type="button" className={toggle ? "btn btn-dark text-warning" : "btn btn-light text-warning"} to='/'>Beginner to Master Learning</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto"> 
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/'>Home</Link>
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/courses'>Courses</Link>
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/faq'>FAQ</Link>
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/blog'>Blog</Link>
+                    <Nav className="me-auto">
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/'>Home</Link>
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/courses'>Courses</Link>
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/faq'>FAQ</Link>
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/blog'>Blog</Link>
 
                     </Nav>
                     <Nav>
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/login'>Login</Link>
-                        <Link type="button" className={toggle? "btn btn-dark" : "btn btn-light" } to='/register'>Register</Link>
-                        
-                        <button onClick={() => setToggle(!toggle)} className={toggle? "btn btn-dark" : "btn btn-light" }>
-                        {toggle ? 'Dark Mode' : "Light Mode"}
+
+
+                        <button onClick={() => setToggle(!toggle)} className={toggle ? "btn btn-dark" : "btn btn-light"}>
+                            {toggle ? 'Dark Mode' : "Light Mode"}
                         </button>
-                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
-                        <Link  to='/profile'>
+                        <Nav href="#deets">
+                            {
+                                user?.uid ?
+                                    <>
+                                        <Button type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} onClick={handleLogOut}>Log Out</Button>
+                                        <span className={toggle ? "btn btn-dark" : "btn btn-light"}>{user?.displayName}</span>
+                                    </>
+                                    :
+                                    <>
+                                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/login'>Login</Link>
+                                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/register'>Register</Link>
+                                    </>
+                            }
+
+                        </Nav>
+                        <Link to='/profile'>
                             {user?.photoURL ?
                                 <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL} ></Image>
                                 : <FaUser></FaUser>
