@@ -21,14 +21,14 @@ const CourseCart = ({ course }) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Body className='text-center'>
-                    <ListGroup className="list-group-flush">
-                    <ListGroup.Item>Previous Value: 10000</ListGroup.Item>
-                    <ListGroup.Item>Discounted Value: 8000</ListGroup.Item>
-                    <ListGroup.Item>Save: 2000</ListGroup.Item>
-                </ListGroup>
-                    <Link to={`/coursedetails/${course.id}`}><button type="button" className="btn btn-primary">Check Out</button></Link>
-                </Card.Body>
-                   
+                        <ListGroup className="list-group-flush">
+                            <ListGroup.Item>Previous Value: 10000</ListGroup.Item>
+                            <ListGroup.Item>Discounted Value: 8000</ListGroup.Item>
+                            <ListGroup.Item>Save: 2000</ListGroup.Item>
+                        </ListGroup>
+                        <Link to={`/coursedetails/${course.id}`}><button type="button" className="btn btn-primary">Details</button></Link>
+                    </Card.Body>
+
                 </Card>
 
             </CardGroup>
