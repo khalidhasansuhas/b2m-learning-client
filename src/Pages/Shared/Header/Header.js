@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,10 +7,11 @@ import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import B2m from '../../../assets/B2m.png';
 import { Image } from 'react-bootstrap';
 import { useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
     const [toggle, setToggle] = useState(true)
-
+    const {user} = useContext(AuthContext)
 
     return (
         <Navbar collapseOnSelect className='mb-5' expand="lg" bg={toggle? "dark" : "light"} variant={toggle? "dark" : "light"}>
@@ -34,7 +35,7 @@ const Header = () => {
                         <button onClick={() => setToggle(!toggle)} className={toggle? "btn btn-dark" : "btn btn-light" }>
                         {toggle ? 'Dark Mode' : "Light Mode"}
                         </button>
-
+                        <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
 
                     </Nav>
                     <div className='d-lg-none'>
