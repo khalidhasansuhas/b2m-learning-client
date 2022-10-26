@@ -5,13 +5,16 @@ import {  OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
     const[error, setError] = useState('')
     const {signIn} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation()
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmit = (event) =>{
         event.preventDefault()
@@ -25,7 +28,7 @@ const Login = () => {
             console.log(user);
             form.reset();
             setError('');
-            navigate('/home')
+            navigate(from, {replace: true});
         })
         .catch(e=>
             {
@@ -97,7 +100,7 @@ const Login = () => {
 
 
             <div class="text-center">
-                <p>Not a member? <a href="#!">Register</a></p>
+                <p>Not a member? <Link to='/register'>Register</Link></p>
             </div>
         </Form>
     </div>

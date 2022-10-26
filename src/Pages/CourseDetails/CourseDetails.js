@@ -2,7 +2,6 @@ import React from 'react';
 import { Col, ListGroup, Row } from 'react-bootstrap';
 import { Link, useLoaderData } from 'react-router-dom';
 import RightSideNav from '../RightSideNav/RightSideNav';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 const CourseDetails = () => {
@@ -55,7 +54,7 @@ const CourseDetails = () => {
                     </Card.Body>
                     <div className=" mt-5 mb-5 text-center">
 
-                        <Link to='/checkout'><button type="button" className="btn btn-primary text-center">Get Premium Access</button></Link>
+                        <Link to={`/checkout/${course.id}`}><button type="button" className="btn btn-primary text-center">Get Premium Access</button></Link>
                     </div>
                 </Card>
             </Col>

@@ -4,11 +4,13 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
     const[error, setError] = useState('')
-     const {createUser} = useContext(AuthContext);
+     const {createUser, updateUserProfile} = useContext(AuthContext);
+     const navigate = useNavigate();
 
     const handleSubmit = (event) =>{
         event.preventDefault()
@@ -24,6 +26,8 @@ const Register = () => {
             console.log(user);
             form.reset();
             setError('');
+            handleUpdateUserProfile(name,photoURL);
+            navigate('/')
         })
         .catch(e=>{
             console.error(e)
@@ -31,6 +35,15 @@ const Register = () => {
         })
     }
 
+    const handleUpdateUserProfile =(name, photoURL)=>{
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+        .then(()=>{})
+        .catch(e=> console.error(e))
+    }
 
     return (
         <div className='border border-success mx-4 px-5 py-5'>
@@ -103,7 +116,7 @@ const Register = () => {
 
 
                 <div class="text-center">
-                    <p>Already a member? <a href="#!">Sign in</a></p>
+                    <p>Already a member? <Link to='/login'>Sign in</Link></p>
                 </div>
             </Form>
         </div>
