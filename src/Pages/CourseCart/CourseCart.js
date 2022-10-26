@@ -26,7 +26,7 @@ const CourseCart = ({ course }) => {
                     <ListGroup.Item>Discounted Value: 8000</ListGroup.Item>
                     <ListGroup.Item>Save: 2000</ListGroup.Item>
                 </ListGroup>
-                    <Link to='/coursedetails'><button type="button" className="btn btn-primary">Check Out</button></Link>
+                    <Link to={`/coursedetails/${course.id}`}><button type="button" className="btn btn-primary">Check Out</button></Link>
                 </Card.Body>
                    
                 </Card>
