@@ -10,22 +10,28 @@ const CourseCart = ({ course }) => {
     return (
         <>
             <CardGroup className='container me-4 ms-4 mb-5'>
-      <Card className='h-full' >
-        <div className='d-flex justify-content-center'>
-        <Card.Img style={{height: '150px', width: '300px'}} variant="top" src={image_url} />
-        </div>
-        <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Text>
-            {title}
-          </Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <small className="text-muted">Last updated 3 mins ago</small>
-        </Card.Footer>
-      </Card>
-      
-    </CardGroup>
+                <Card className='h-full' >
+                    <div className='d-flex justify-content-center'>
+                        <Card.Img style={{ height: '150px', width: '300px' }} variant="top" src={image_url} />
+                    </div>
+                    <Card.Body>
+                        <Card.Title>{name}</Card.Title>
+                        <Card.Text>
+                            {title}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Body className='text-center'>
+                    <ListGroup className="list-group-flush">
+                    <ListGroup.Item>Previous Value: 10000</ListGroup.Item>
+                    <ListGroup.Item>Discounted Value: 8000</ListGroup.Item>
+                    <ListGroup.Item>Save: 2000</ListGroup.Item>
+                </ListGroup>
+                    <Link to='/coursedetails'><button type="button" className="btn btn-primary">Check Out</button></Link>
+                </Card.Body>
+                   
+                </Card>
+
+            </CardGroup>
 
         </>
 
