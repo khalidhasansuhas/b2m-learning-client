@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Footer from '../Pages/Shared/Footer/Footer';
 import Header from '../Pages/Shared/Header/Header';
 import LeftSideNav from '../Pages/Shared/LeftSideNav/LeftSideNav';
 
+export const CourseContext = createContext({})
+
 const Main = () => {
+    const course = useLoaderData()
     return (
 
-        <div>
+        <CourseContext.Provider value={course}>
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg='3'>
+                    <Col lg='3' className='d-none d-lg-block'>
                         <LeftSideNav></LeftSideNav>
                     </Col>
                     <Col lg='9'>
@@ -21,7 +24,7 @@ const Main = () => {
                 </Row>
             </Container>
             <Footer></Footer>
-        </div>
+        </CourseContext.Provider>
     );
 };
 

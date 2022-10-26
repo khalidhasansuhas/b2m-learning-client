@@ -1,0 +1,35 @@
+import React from 'react';
+import { Button, CardGroup, Col, Row } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import './CourseCart.css';
+import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
+
+const CourseCart = ({ course }) => {
+    const { name, title, image_url } = course
+    return (
+        <>
+            <CardGroup className='container me-4 ms-4 mb-5'>
+      <Card className='h-full' >
+        <div className='d-flex justify-content-center'>
+        <Card.Img style={{height: '150px', width: '300px'}} variant="top" src={image_url} />
+        </div>
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>
+            {title}
+          </Card.Text>
+        </Card.Body>
+        <Card.Footer>
+          <small className="text-muted">Last updated 3 mins ago</small>
+        </Card.Footer>
+      </Card>
+      
+    </CardGroup>
+
+        </>
+
+    );
+};
+
+export default CourseCart;
