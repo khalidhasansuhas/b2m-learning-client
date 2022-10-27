@@ -1,7 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import { Outlet } from 'react-router-dom';
 import { CourseContext } from '../../layout/Main';
 import CourseCart from '../CourseCart/CourseCart';
 import RightSideNav from '../RightSideNav/RightSideNav';
@@ -17,7 +16,7 @@ const Courses = () => {
                     courses.map(course => <CourseCart 
                         key={course.id}
                          course={course}>
-                            
+
                          </CourseCart>)
                  }
             </Col>

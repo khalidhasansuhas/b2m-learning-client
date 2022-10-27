@@ -7,7 +7,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const RightSideNav = () => {
 
@@ -20,9 +21,10 @@ const RightSideNav = () => {
     }, [])
 
 
-    const {providerLogin} = useContext(AuthContext);
+    const {providerLogin , setUser} = useContext(AuthContext);
 
-    const googleProvider = new GoogleAuthProvider()
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const handleGoogleSignIn = () =>{
         providerLogin(googleProvider)
@@ -32,20 +34,54 @@ const RightSideNav = () => {
         })
         .catch(error=> console.error(error))
     }
+
+    const handleGithubSignIn = () =>{
+        providerLogin(githubProvider)
+        .then(result =>{
+            const user = result.user;
+            setUser(user)
+            console.log(user);
+        })
+        .catch(error=> console.error(error))
+    }
+
     return (
         <div>
-            <h2>All courses : {courses.length}</h2>
+            <h3>All Courses</h3>
             <div>
                 {
                     courses.map(course => <p key={course.id}>
-                        <Link to={`/coursedetails/${course.id}`}>{course.name}</Link>
+                        
+                        <ButtonGroup vertical className='w-100'>
+                        <Button ><Link className='text-light' to={`/coursedetails/${course.id}`}>{course.name}</Link></Button>
+                        </ButtonGroup>
                     </p>)
                 }
             </div>
-            <ButtonGroup vertical className='w-100'>
-                <Button onClick={handleGoogleSignIn} className='mb-2' variant="outline-primary"><FaGoogle></FaGoogle> Google SignIn</Button>
-                <Button className='mb-2' variant="outline-dark"><FaGithub></FaGithub> GitHub SignIn</Button>
-            </ButtonGroup>
+            <div class="text-center mb-3">
+                <h3>Log in with:</h3>
+                <OverlayTrigger
+                    overlay={
+                        <Tooltip >
+                            Sign in With Google
+                        </Tooltip>}
+                >
+                    <Button onClick={handleGoogleSignIn} type="button" className='mx-2' variant="outline-primary">
+                        <FaGoogle></FaGoogle>
+                    </Button>
+                </OverlayTrigger>
+                <OverlayTrigger
+                    overlay={
+                        <Tooltip >
+                            Sign in With GitHub
+                        </Tooltip>}
+                >
+                    <Button onClick={handleGithubSignIn} type="button" className='mx-2' variant="outline-dark">
+                        <FaGithub></FaGithub>
+                    </Button>
+                </OverlayTrigger>
+
+            </div>
         </div>
     );
 };

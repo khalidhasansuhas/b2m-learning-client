@@ -3,11 +3,20 @@ import { useContext } from 'react';
 import { Card, Image, ListGroup } from 'react-bootstrap';
 import { FaUser } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const CheckOut = () => {
     const course = useLoaderData()
     const user = useContext(AuthContext);
+
+    const handleConfirm = ()=> {
+        Swal.fire(
+            `Congratulations!${user?.user?.displayName}`,
+            'You Have SuccessFully confirmed the checkout!',
+            'success'
+          )
+    }
 
     return (
         <div className=' d-flex flex-column  justify-content-center align-items-center h-100 mt-5'>
@@ -25,7 +34,7 @@ const CheckOut = () => {
                 <ListGroup.Item>Rating: {course.rating.number}</ListGroup.Item>
                 <ListGroup.Item>Badge: {course.rating.badge}</ListGroup.Item>
                 <ListGroup.Item>Course Fee: {course.fee}</ListGroup.Item>
-                <button type="button" className="btn btn-primary mt-2 text-center">Confirm</button>
+                <button onClick={handleConfirm} type="button" className="btn btn-primary mt-2 text-center">Confirm</button>
             </Card.Body>
         </div>
     );

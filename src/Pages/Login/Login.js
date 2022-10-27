@@ -7,8 +7,14 @@ import Form from 'react-bootstrap/Form';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
+    const { providerLogin, setUser } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+
     const[error, setError] = useState('')
     const {signIn} = useContext(AuthContext);
     const navigate = useNavigate();
@@ -37,6 +43,25 @@ const Login = () => {
             })
     }
 
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
+
+    const handleGithubSignIn = () => {
+        providerLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
+                setUser(user)
+                console.log(user);
+            })
+            .catch(error => console.error(error))
+    }
+
     return (
         <div className='border border-success mx-4 px-5 py-5'>
             <div class="text-center mb-3">
@@ -47,7 +72,7 @@ const Login = () => {
                             Sign in With Google
                         </Tooltip>}
                 >
-                    <Button type="button" className='mx-2' variant="outline-primary">
+                    <Button onClick={handleGoogleSignIn}  type="button" className='mx-2' variant="outline-primary">
                         <FaGoogle></FaGoogle>
                     </Button>
                 </OverlayTrigger>
@@ -57,7 +82,7 @@ const Login = () => {
                             Sign in With GitHub
                         </Tooltip>}
                 >
-                    <Button type="button" className='mx-2' variant="outline-dark">
+                    <Button onClick={handleGithubSignIn} type="button" className='mx-2' variant="outline-dark">
                         <FaGithub></FaGithub>
                     </Button>
                 </OverlayTrigger>
