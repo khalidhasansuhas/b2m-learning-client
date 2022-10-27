@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import B2m from '../../../assets/B2m.png';
-import { Button, Image } from 'react-bootstrap';
+import { Button, Image, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { FaUser } from 'react-icons/fa';
@@ -24,7 +24,7 @@ const Header = () => {
         <Navbar collapseOnSelect className='mb-5' expand="lg" bg={toggle ? "dark" : "light"} variant={toggle ? "dark" : "light"}>
 
             <Container>
-                <Link to='/'><Image style={{ height: '50px' }} src={B2m}></Image></Link>
+                <Link to='/login'><Image style={{ height: '50px' }} src={B2m}></Image></Link>
                 <Link type="button" className={toggle ? "btn btn-dark text-warning" : "btn btn-light text-warning"} to='/'>Beginner to Master Learning</Link>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -39,14 +39,14 @@ const Header = () => {
 
 
                         <button onClick={() => setToggle(!toggle)} className={toggle ? "btn btn-dark" : "btn btn-light"}>
-                            {toggle ? 'Dark Mode' : "Light Mode"}
+                            {toggle ? 'Light' : "Dark"}
                         </button>
                         <Nav href="#deets">
                             {
                                 user?.uid ?
                                     <>
                                         <Button type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} onClick={handleLogOut}>Log Out</Button>
-                                        <span className={toggle ? "btn btn-dark" : "btn btn-light"}>{user?.displayName}</span>
+                                       
                                     </>
                                     :
                                     <>
@@ -58,10 +58,22 @@ const Header = () => {
                         </Nav>
                         <Link to='/profile'>
                             {user?.photoURL ?
-                                <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL} ></Image>
+                                <OverlayTrigger
+                                placement="bottom"
+                                overlay={
+                                    <Tooltip>
+                                        {user?.displayName}
+                                    </Tooltip>
+                                }>
+                                    
+                                    <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL} ></Image>
+                                </OverlayTrigger>
+
                                 : <FaUser></FaUser>
                             }
+
                         </Link>
+
                     </Nav>
                     <div className='d-lg-none'>
                         <LeftSideNav></LeftSideNav>

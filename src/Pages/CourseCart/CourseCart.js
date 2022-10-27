@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CardGroup, Col, Row } from 'react-bootstrap';
+import {  CardGroup } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import './CourseCart.css';
 import ListGroup from 'react-bootstrap/ListGroup';
