@@ -49,6 +49,7 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                navigate(from, {replace: true});
                 console.log(user);
             })
             .catch(error => console.error(error))
@@ -59,6 +60,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user)
+                navigate(from, {replace: true});
                 console.log(user);
             })
             .catch(error => console.error(error))
