@@ -1,9 +1,12 @@
 import React from 'react';
-import { Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Col, ListGroup, Row } from 'react-bootstrap';
 import { Link, useLoaderData } from 'react-router-dom';
 import RightSideNav from '../RightSideNav/RightSideNav';
 import Card from 'react-bootstrap/Card';
+import Pdf from "react-to-pdf";
+import { FaFileDownload } from 'react-icons/fa';
 
+const ref = React.createRef();
 const CourseDetails = () => {
     const course = useLoaderData()
     const { image_url, name, cur_student, Total_student, employed, fee, title } = course
@@ -11,20 +14,25 @@ const CourseDetails = () => {
 
         <Row className='ms-4 '>
             <Col lg='9'>
-                <Card className='shadow p-3 mb-5 bg-body rounded'>
-                    <Card.Img style={{height:"300px"}} variant="top" src={image_url} />
+                <Card className='shadow p-3 mb-5 bg-body rounded' >
+                    <Card.Img style={{ height: "300px" }} variant="top" src={image_url} />
                     <Card.Body>
-                        <Card.Title>Course Name: {name}</Card.Title>
+                        <div className='d-flex flex-row-reverse justify-content-end '>
+                        <Pdf targetRef={ref} filename="course-details.pdf">
+                            {({ toPdf }) => <Button variant="outline-dark"><FaFileDownload onClick={toPdf}></FaFileDownload ></Button>}
+                        </Pdf>
+                        <Card.Title className='pe-2' >Course Name: {name}</Card.Title>
+                        </div>
                         <Card.Text>
                             <strong>Description:</strong> {title}
                         </Card.Text>
 
                     </Card.Body>
 
-                    <Card.Body >
+                    <Card.Body ref={ref} >
                         <ListGroup className="list-group-flush shadow p-3 mb-5 bg-body rounded">
                             <Card.Body>
-                                <Card.Title>Features</Card.Title>
+                                <Card.Title>Features of this {name} Course</Card.Title>
                                 <ListGroup.Item>Life Time Course Access</ListGroup.Item>
                                 <ListGroup.Item>24/7 Support </ListGroup.Item>
                                 <ListGroup.Item>Job Replacement help</ListGroup.Item>
@@ -66,5 +74,6 @@ const CourseDetails = () => {
         </Row>
     );
 };
+
 
 export default CourseDetails;
