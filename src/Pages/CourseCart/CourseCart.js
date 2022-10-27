@@ -1,7 +1,6 @@
 import React from 'react';
 import {  CardGroup } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import './CourseCart.css';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 

@@ -1,9 +1,6 @@
 import React from 'react';
-import { useContext } from 'react';
 import { Col, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
-import { CourseContext } from '../../layout/Main';
 import RightSideNav from '../RightSideNav/RightSideNav';
 import Carousel from 'react-bootstrap/Carousel';
 import Course1 from '../../assets/Course1.png';
@@ -17,7 +14,7 @@ import B2m from '../../assets/B2m.png';
 
 
 const Home = () => {
-    // const loadCourse = useContext(CourseContext)
+  
 
     return (
 
@@ -86,7 +83,7 @@ const Home = () => {
                                 <div className="p-3 border bg-light">Job Placement Help</div>
                             </div>
                             <div className="col-6">
-                                <div className="p-3 border bg-light">Project Oriented content</div>
+                                <div className="p-3 border bg-light">Project Oriented </div>
                             </div>
                         </div>
                     </div>
@@ -112,7 +109,9 @@ const Home = () => {
                 <Col lg='3'>
                     <RightSideNav></RightSideNav>
 
-                    <Link to='/courses'><button type="button" className="btn btn-primary">All Courses</button></Link>
+                    
+                    <Link to='/courses'><button type="button" className="btn  w-100 text-center btn-outline-primary">All Courses</button></Link>
+                   
                 </Col>
             </Row>
         </div>

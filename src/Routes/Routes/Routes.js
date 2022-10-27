@@ -17,7 +17,7 @@ export const routes = createBrowserRouter([
         element:<Main></Main>,
         errorElement:<Error></Error>,
         loader: async () => {
-            return  fetch('http://localhost:5000/coursedetails')
+            return  fetch('https://b2m-learning-server.vercel.app/coursedetails')
            },
         children:[
             {
@@ -39,7 +39,7 @@ export const routes = createBrowserRouter([
             {
                 path:'/coursedetails/:id',
                 element: <CourseDetails></CourseDetails>,
-                loader: ({params}) => fetch(`http://localhost:5000/coursedetails/${params.id}`)
+                loader: ({params}) => fetch(`https://b2m-learning-server.vercel.app/coursedetails/${params.id}`)
             },
             {
                 path:'/login',
@@ -52,7 +52,7 @@ export const routes = createBrowserRouter([
             {
                 path:'/checkout/:id',
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                loader:({params}) => fetch(`http://localhost:5000/checkout/${params.id}`)
+                loader:({params}) => fetch(`https://b2m-learning-server.vercel.app/checkout/${params.id}`)
             },
             {
                 path:'/faq',

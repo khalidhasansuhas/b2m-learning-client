@@ -31,8 +31,8 @@ const Header = () => {
                     <Nav className="me-auto">
                         <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/'>Home</Link>
                         <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/courses'>Courses</Link>
-                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/faq'>FAQ</Link>
-                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/blog'>Blog</Link>
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/faq'>Blog</Link>
+                        <Link type="button" className={toggle ? "btn btn-dark" : "btn btn-light"} to='/blog'>FAQ</Link>
 
                     </Nav>
                     <Nav>
