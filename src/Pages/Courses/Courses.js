@@ -11,7 +11,7 @@ const Courses = () => {
     return (
         <Row>
             <Col lg='9'>
-                 <h1> Course length: {courses.length}</h1>
+            <h3 className='text-center'> All Courses: {courses.length}</h3>
                  {
                     courses.map(course => <CourseCart 
                         key={course.id}

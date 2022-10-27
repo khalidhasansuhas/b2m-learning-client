@@ -9,9 +9,9 @@ const CourseDetails = () => {
     const { image_url, name, cur_student, Total_student, employed, fee, title } = course
     return (
 
-        <Row className='ms-4'>
+        <Row className='ms-4 '>
             <Col lg='9'>
-                <Card>
+                <Card className='shadow p-3 mb-5 bg-body rounded'>
                     <Card.Img style={{height:"300px"}} variant="top" src={image_url} />
                     <Card.Body>
                         <Card.Title>Course Name: {name}</Card.Title>
@@ -22,7 +22,7 @@ const CourseDetails = () => {
                     </Card.Body>
 
                     <Card.Body >
-                        <ListGroup className="list-group-flush">
+                        <ListGroup className="list-group-flush shadow p-3 mb-5 bg-body rounded">
                             <Card.Body>
                                 <Card.Title>Features</Card.Title>
                                 <ListGroup.Item>Life Time Course Access</ListGroup.Item>
@@ -33,7 +33,7 @@ const CourseDetails = () => {
 
                             </Card.Body>
                         </ListGroup>
-                        <ListGroup className="list-group-flush">
+                        <ListGroup className="list-group-flush shadow p-3 mb-5 bg-body rounded">
                             <Card.Body>
 
                                 <Card.Title>Status:</Card.Title>
@@ -42,7 +42,7 @@ const CourseDetails = () => {
                                 <ListGroup.Item>Employment: {employed}</ListGroup.Item>
                             </Card.Body>
                         </ListGroup>
-                        <ListGroup className="list-group-flush">
+                        <ListGroup className="list-group-flush shadow p-3 mb-5 bg-body rounded">
                             <Card.Body>
 
                                 <Card.Title>Access:</Card.Title>

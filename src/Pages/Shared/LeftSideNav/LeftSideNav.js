@@ -24,7 +24,9 @@ const LeftSideNav = () => {
                 </Card.Body>
             </Card>
         </div>
+        <div className='shadow  p-3 mb-5 bg-body rounded' style={{ width: '18rem' }}>
         <BarCharts></BarCharts>
+        </div>
        </>
     );
 };

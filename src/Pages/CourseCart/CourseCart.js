@@ -9,7 +9,7 @@ const CourseCart = ({ course }) => {
     const { name, title, image_url } = course
     return (
         <>
-            <CardGroup className='container me-4 ms-4 mb-5'>
+            <CardGroup className='container me-4 ms-4 mb-5 shadow  p-3  bg-body rounded'>
                 <Card className='h-full' >
                     <div className='d-flex justify-content-center'>
                         <Card.Img style={{ height: '150px', width: '300px' }} variant="top" src={image_url} />

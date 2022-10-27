@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import Registerimg from '../../assets/Registerimg.png';
+import B2m from '../../assets/B2m.png';
 
 const Register = () => {
 
@@ -74,10 +75,11 @@ const Register = () => {
     return (
         <>
 
-            <Row>
+            <Row className=' ms-4 px-5 py-5 shadow p-3 mb-5 bg-body rounded' >
                 <Col lg='6'>
-                    <div className='border border-success mx-4 px-5 py-5'>
+                    <div >
                         <div class="text-center mb-3">
+                            <Image style={{height:'60px'}} src={B2m}></Image>
                             <strong><p>Log in with:</p></strong>
                             <OverlayTrigger
                                 overlay={
@@ -135,9 +137,9 @@ const Register = () => {
                         </Form>
                     </div>
                 </Col>
-                <Col lg='6' >
-                    <div className=' y-auto'>
-                    <Image className='' fluid src={Registerimg}></Image>
+                <Col lg='6'   >
+                    <div className='h-100 w-100 d-flex'>
+                    <Image  src={Registerimg}></Image>
                     </div>
                 </Col>
             </Row>

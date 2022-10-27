@@ -46,7 +46,7 @@ const RightSideNav = () => {
     }
 
     return (
-        <div>
+        <div className='shadow  p-3 mb-5 bg-body rounded'>
             <h3>All Courses</h3>
             <div>
                 {
